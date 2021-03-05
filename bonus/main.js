@@ -6,31 +6,36 @@
 
   //creare array dei cognomi
   var cognomi = ["Bianchi", "Rossi", "Perlari", "Lodigiani", "Mastrobattista", "Verdi"];
-  var appoggio = 0;
-  var swapp;
+  var appoggio;
 
   console.log(cognomi);
   if (isNaN(cognome_utente)) {
      cognomi.push(cognome_utente);
   }
 
-  do {
-   swapp = false;
+
+
+
    var indice = 0;
-   for (var i = 0; i < cognomi.length; i++) {
-     indice++;
-     if (cognomi[i] > cognomi[i+1] ) {
-      appoggio = cognomi[i];
-      cognomi[i] =  cognomi[i+1];
-      cognomi[i+1] = appoggio;
-      console.log(cognomi[i]);
-      swapp = true;
+   for (var i = 0; i < cognomi.length -1; i++) {
 
-    }if (cognome_utente == cognomi[i]) {
-         document.getElementById("posizione").innerHTML= "la posizione del cognome che hai inserito è :" + " " +  indice+ " " + cognomi[i];
+     for (var j = i+1; j < cognomi.length; j++) {
+
+       if (cognomi[i] > cognomi[j] ) {
+        appoggio = cognomi[i];
+        cognomi[i] =  cognomi[j];
+        cognomi[j] = appoggio;
+        // console.log(cognomi[j]);
+        }
+      }
     }
+    for (var i = 0; i < cognomi.length; i++) {
+      indice++;
+      document.getElementById("lista").innerHTML += "<li>"+ cognomi[i] + "</li>";
 
-   }
+       if (cognome_utente == cognomi[i]) {
 
-  } while (swapp);
-  console.log(cognomi);
+         document.getElementById("posizione").innerHTML= "la posizione del cognome che hai inserito è :" + " " + indice+ " " + cognomi[i];
+
+     }
+    }
